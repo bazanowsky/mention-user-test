@@ -1,0 +1,10 @@
+@import "singleArticle/singleArticle";
+
+.articles-list {
+  padding: 10px;
+}
+
+.articles-list__item {
+  margin-bottom: 20px;
+  border-bottom: 1px dashed #ddd;
+}
