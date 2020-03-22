@@ -9,7 +9,7 @@ const ArticleForm = ({ className, onSubmit, ...props }) => {
   const [content, setContent] = useState('')
 
   const handleContentChange = useCallback((e) => {
-    setContent(e.target.innerHTML)
+    setContent(e.target.value)
   }, [])
 
   const handleSubmit = useCallback(() => {
@@ -32,7 +32,7 @@ const ArticleForm = ({ className, onSubmit, ...props }) => {
       <MentionInput
         className="article-form__content"
         onChange={handleContentChange}
-        content={content}
+        value={content}
       />
       <Button type="button" onClick={handleSubmit}>
         Add article
