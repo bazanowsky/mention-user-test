@@ -50,7 +50,9 @@ const MentionInput = ({
       }
 
       if (currentMention && e.key !== mentionChar) {
-        const valueFromMention = value.slice(currentMention.selectionStart).split("\n")?.[0]
+        const valueFromMention = value
+          .slice(currentMention.selectionStart)
+          .split('\n')?.[0]
         const mentionText = valueFromMention.match(/[a-zA-Z0-9_]+/)?.[0] || ''
 
         setCurrentMention((mention) => ({

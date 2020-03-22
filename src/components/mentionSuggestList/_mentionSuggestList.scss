@@ -2,7 +2,35 @@
   position: absolute;
   background: #fff;
   border: 1px solid #ddd;
-  padding: 15px;
   z-index: 999;
   transform: translateY(20px);
+  min-width: 150px;
+}
+
+.mention-suggest-list__item {
+  border-bottom: 1px solid #ddd;
+  font-size: 14px;
+  padding: 4px 10px;
+  cursor: pointer;
+
+  &:nth-child(2n) {
+    background-color: #fafafa;
+  }
+
+  &:hover {
+    background-color: #eee;
+  }
+}
+
+.mention-suggest-list__loading {
+  background: #dfd8b2;
+  text-align: center;
+  padding: 4px;
+}
+
+.mention-suggest-list__empty,
+.mention-suggest-list__no-results {
+  background: #fafafa;
+  text-align: center;
+  padding: 4px;
 }
