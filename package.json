@@ -6,13 +6,16 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "body-parser": "^1.19.0",
     "classnames": "^2.2.6",
+    "express": "^4.17.1",
     "lodash": "^4.17.15",
     "node-sass": "^4.13.1",
     "prettier": "^2.0.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
+    "request": "^2.88.2",
     "textarea-caret": "^3.1.0",
     "uuid": "^7.0.2"
   },
@@ -21,7 +24,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "./node_modules/.bin/eslint --fix --ignore-path .gitignore ."
+    "lint": "./node_modules/.bin/eslint --fix --ignore-path .gitignore .",
+    "proxy": "PORT=3001 node ./server.js"
   },
   "eslintConfig": {
     "extends": "react-app"
