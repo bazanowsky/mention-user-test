@@ -1,0 +1,10 @@
+.mention-input {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  min-height: 4em;
+  height: auto;
+  resize: vertical;
+  padding: 15px;
+  border: 1px solid $color_input-border;
+}

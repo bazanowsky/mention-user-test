@@ -1,0 +1,22 @@
+.btn {
+  min-width: 60px;
+  background: $color_primary;
+  border: none;
+  height: 33px;
+  text-align: center;
+  display: inline-block;
+  font-size: 14px;
+  text-transform: uppercase;
+  color: $color_text;
+
+  &:hover,
+  &:focus {
+    background-color: darken($color_primary, 10%);
+    outline: none;
+  }
+
+  &:active {
+    background-color: darken($color_primary, 20%);
+    outline: none;
+  }
+}

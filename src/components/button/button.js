@@ -1,8 +1,8 @@
-import React  from 'react';
-import classnames from 'classnames';
-import PropTypes  from 'prop-types';
+import React from 'react'
+import classnames from 'classnames'
+import PropTypes from 'prop-types'
 
-const Button = ({className, Component = 'button', children, ...props}) => {
+const Button = ({ className, Component = 'button', children, ...props }) => {
   return (
     <Component className={classnames(className, 'btn')} {...props}>
       {children}

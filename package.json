@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^7.1.2",
     "classnames": "^2.2.6",
     "node-sass": "^4.13.1",
+    "prettier": "^2.0.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
@@ -17,7 +18,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "./node_modules/.bin/eslint --fix --ignore-path .gitignore ."
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -33,5 +35,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "eslint-config-prettier": "^6.10.1",
+    "eslint-plugin-prettier": "^3.1.2"
   }
 }

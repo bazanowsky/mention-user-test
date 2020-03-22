@@ -1,36 +1,43 @@
-import React, { useCallback } from 'react'
-import PropTypes from 'prop-types';
-import classnames from 'classnames';
-import { Button } from '../button/button';
-import {v4 as uuid} from 'uuid';
+import React, { useCallback, useState } from 'react'
+import PropTypes from 'prop-types'
+import classnames from 'classnames'
+import { Button } from '../button/button'
+import { v4 as uuid } from 'uuid'
+import { MentionInput } from '../mentionInput/mentionInput'
 
-const FIELD_NAMES = {
-  CONTENT: 'content'
-}
+const ArticleForm = ({ className, onSubmit, ...props }) => {
+  const [content, setContent] = useState('')
 
-const ArticleForm = ({className, onSubmit, ...props}) => {
-  const handleSubmit = useCallback(e => {
-    e.preventDefault()
-    const now = new Date();
+  const handleContentChange = useCallback((e) => {
+    setContent(e.target.innerHTML)
+  }, [])
+
+  const handleSubmit = useCallback(() => {
+    const now = new Date()
     const article = {
       id: uuid(),
       author: 'Sample name',
       title: 'Sample title',
-      content: e.target[FIELD_NAMES.CONTENT].value,
+      content,
       createdAt: now,
       updatedAt: now,
     }
     onSubmit(article)
-    e.target.reset()
-    },
-  [onSubmit])
+    setContent('')
+  }, [content, onSubmit])
 
   return (
-    <form className={classnames(className, 'article-form')} onSubmit={handleSubmit} {...props}>
+    <div className={classnames(className, 'article-form')} {...props}>
       <h3>Article form</h3>
-      <textarea name={FIELD_NAMES.CONTENT} className="article-form__content" />
-      <Button type="submit">Add article</Button>
-    </form>
+      <MentionInput
+        className="article-form__content"
+        onChange={handleContentChange}
+        content={content}
+      />
+      <Button type="button" onClick={handleSubmit}>
+        Add article
+      </Button>
+    </div>
   )
 }
 
