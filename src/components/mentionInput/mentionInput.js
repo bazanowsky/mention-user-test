@@ -1,6 +1,9 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import classnames from 'classnames'
 import PropTypes from 'prop-types'
+import getCaretPosition from 'textarea-caret'
+
+import { MentionSuggestList, MentionSuggestListPortal } from '..'
 
 const EnterKeyCode = 13
 const SpaceKeyCode = 32
@@ -24,8 +27,13 @@ const MentionInput = ({
     (e) => {
       const { value } = e.target
       if (!currentMention && e.key === mentionChar) {
+        const caretPosition = getCaretPosition(
+          e.target,
+          e.target.selectionStart
+        )
         setCurrentMention({
           selectionStart: inputRef.current.selectionStart,
+          caretPosition,
           text: '',
         })
         return
@@ -42,7 +50,7 @@ const MentionInput = ({
       }
 
       if (currentMention && e.key !== mentionChar) {
-        const valueFromMention = value.slice(currentMention.selectionStart)
+        const valueFromMention = value.slice(currentMention.selectionStart).split("\n")?.[0]
         const mentionText = valueFromMention.match(/[a-zA-Z0-9_]+/)?.[0] || ''
 
         setCurrentMention((mention) => ({
@@ -60,22 +68,24 @@ const MentionInput = ({
     ]
   )
 
-  useEffect(() => {
-    console.log(currentMention)
-  }, [currentMention])
-
   return (
     <div className={classnames(className, 'mention-input')} {...props}>
       <textarea
         className="mention-input__textarea"
         onKeyUp={handleKeyUp}
+        onBlur={() => {
+          setCurrentMention(null)
+        }}
         onChange={onChange}
         value={value}
         disabled={disabled}
         ref={inputRef}
         {...inputProps}
       />
-      
+      <MentionSuggestList
+        input={currentMention?.text}
+        position={currentMention?.caretPosition}
+      />
     </div>
   )
 }
