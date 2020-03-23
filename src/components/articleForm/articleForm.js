@@ -5,34 +5,55 @@ import { Button } from '../button/button'
 import { v4 as uuid } from 'uuid'
 import { MentionInput } from '../mentionInput/mentionInput'
 
-const ArticleForm = ({ className, onSubmit, ...props }) => {
-  const [content, setContent] = useState('')
+const emptyFormData = {
+  title: '',
+  content: '',
+}
 
-  const handleContentChange = useCallback((e) => {
-    setContent(e.target.value)
+const ArticleForm = ({ className, onSubmit, ...props }) => {
+  const [formFields, setFormFields] = useState(emptyFormData)
+  const [mentionedUsers, setMentionedUsers] = useState({})
+  const addMentionedUser = (selection) => {
+    setMentionedUsers((users) => ({ ...users, [selection.name]: selection }))
+  }
+  const handleContentChange = useCallback((value) => {
+    setFormFields((state) => ({ ...state, content: value }))
+  }, [])
+
+  const handleTextFieldChange = useCallback((e) => {
+    const { name, value } = e.target
+    setFormFields((state) => ({ ...state, [name]: value }))
   }, [])
 
   const handleSubmit = useCallback(() => {
     const now = new Date()
     const article = {
       id: uuid(),
-      author: 'Sample name',
-      title: 'Sample title',
-      content,
+      ...formFields,
       createdAt: now,
       updatedAt: now,
+      mentionedUsers,
     }
     onSubmit(article)
-    setContent('')
-  }, [content, onSubmit])
+    setFormFields(emptyFormData)
+  }, [formFields, onSubmit])
 
   return (
     <div className={classnames(className, 'article-form')} {...props}>
       <h3>Article form</h3>
+      <input
+        type="text"
+        name="title"
+        value={formFields.title}
+        onChange={handleTextFieldChange}
+        className="article-form__text-input"
+        placeholder="Type title here"
+      />
       <MentionInput
         className="article-form__content"
         onChange={handleContentChange}
-        value={content}
+        value={formFields.content}
+        onMentionSelected={addMentionedUser}
       />
       <Button type="button" onClick={handleSubmit}>
         Add article

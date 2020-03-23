@@ -3,3 +3,24 @@
   border: 1px solid #ddd;
   background-color: #eee;
 }
+
+.mention {
+  color: #0083f1;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.single-article__header {
+  display: flex;
+  margin-bottom: 25px;
+}
+
+.single-article__title {
+  flex: 1 1 auto;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.single-article__date {
+  color: #888;
+}

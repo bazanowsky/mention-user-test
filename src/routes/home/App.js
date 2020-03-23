@@ -13,6 +13,8 @@ function App() {
       <div className="app__wrapper">
         <h1 className="app__title">Sample articles system</h1>
         <ArticleForm onSubmit={addNewArticle} />
+
+        <h2 className="app__title">Articles</h2>
         <ArticlesList articles={articles} />
       </div>
     </div>
