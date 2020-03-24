@@ -1,11 +1,25 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { ArticleForm, ArticlesList } from '../../components'
+import * as localArticles from '../../services/localArticles'
 
 function App() {
   const [articles, setArticles] = useState([])
 
+  useEffect(() => {
+    const storedArticles = localArticles.getSavedArticles()
+    setArticles(storedArticles)
+  }, [])
+
   const addNewArticle = useCallback((article) => {
-    setArticles((state) => [article, ...state])
+    localArticles.addArticle(article)
+    const storedArticles = localArticles.getSavedArticles()
+    setArticles(storedArticles)
+  }, [])
+
+  const handleArticleDeleted = useCallback(({ id }) => {
+    localArticles.removeArticleById(id)
+    const storedArticles = localArticles.getSavedArticles()
+    setArticles(storedArticles)
   }, [])
 
   return (
@@ -15,7 +29,10 @@ function App() {
         <ArticleForm onSubmit={addNewArticle} />
 
         <h2 className="app__title">Articles</h2>
-        <ArticlesList articles={articles} />
+        <ArticlesList
+          articles={articles}
+          onArticleDelete={handleArticleDeleted}
+        />
       </div>
     </div>
   )

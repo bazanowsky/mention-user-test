@@ -24,3 +24,17 @@
 .single-article__date {
   color: #888;
 }
+
+.single-article__delete {
+  margin-left: 20px;
+  visibility: hidden;
+  cursor: pointer;
+
+  &:hover {
+    color: red;
+  }
+
+  .single-article:hover & {
+    visibility: visible;
+  }
+}

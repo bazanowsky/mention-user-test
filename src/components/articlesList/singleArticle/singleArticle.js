@@ -6,7 +6,7 @@ import { format } from 'date-fns'
 import { InjectMentions } from '../../injectMentions/injectMentions'
 import { isString } from 'lodash/lang'
 
-const SingleArticle = ({ className, article, ...props }) => {
+const SingleArticle = ({ className, onArticleDelete, article, ...props }) => {
   return (
     <article className={classnames(className, 'single-article')}>
       <header className="single-article__header">
@@ -17,6 +17,12 @@ const SingleArticle = ({ className, article, ...props }) => {
         >
           {format(article.createdAt, 'HH:mm dd.MM.yyyy ')}
         </time>
+        <span
+          className="single-article__delete"
+          onClick={() => onArticleDelete(article)}
+        >
+          Delete
+        </span>
       </header>
       <div className="single-article__content">
         <InjectMentions
@@ -51,6 +57,7 @@ const SingleArticle = ({ className, article, ...props }) => {
 SingleArticle.propTypes = {
   className: PropTypes.string,
   article: PropTypes.object,
+  onArticleDelete: PropTypes.func,
 }
 
 export { SingleArticle }

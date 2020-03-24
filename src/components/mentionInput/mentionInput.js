@@ -50,6 +50,7 @@ const MentionInput = ({
   const [isSelectingMention, setIsSelectingMention] = useState(false)
   const inputRef = useRef()
   const listRef = useRef()
+
   const handleKeyUp = (e) => {
     const { value } = e.target
     if (!currentMention && e.key === mentionChar) {
