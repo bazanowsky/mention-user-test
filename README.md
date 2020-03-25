@@ -1,3 +1,25 @@
+# Mention user test
+
+### install
+```
+yarn install
+```
+### Run locally prod:
+```
+npm run proxy
+npm run start:prod
+open http://localhost:3000/
+```
+
+### Run locally dev:
+```
+npm run proxy
+npm run start
+open http://localhost:3000/
+```
+
+______
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
